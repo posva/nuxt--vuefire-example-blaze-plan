@@ -1,0 +1,14 @@
+{
+  "rules": {
+    ".read": "true",
+    ".write": false,
+
+    "todos": {
+      ".indexOn": ["finished", "uid", "updated"],
+      "$todo_id": {
+        ".read": true,
+        ".write": true
+      }
+    }
+  }
+}

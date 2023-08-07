@@ -1,0 +1,31 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+    "postinstall": "nuxt prepare",
+    "emulators": "firebase emulators:start"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "^0.7.4",
+    "@types/node": "^18.17.1",
+    "nuxt": "^3.6.5"
+  },
+  "dependencies": {
+    "@firebase/app-types": "^0.9.0",
+    "@vueuse/core": "^10.3.0",
+    "@vueuse/nuxt": "^10.3.0",
+    "firebase": "^10.1.0",
+    "firebase-admin": "^11.10.1",
+    "firebase-functions": "^4.4.1",
+    "nuxt-vuefire": "^0.2.13",
+    "vuefire": "^3.1.13"
+  },
+  "pnpm": {
+    "overrides": {
+      "nitropack": "link:../../unjs/nitro"
+    }
+  }
+}
