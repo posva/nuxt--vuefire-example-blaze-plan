@@ -89,7 +89,7 @@ watch(user, async (currentUser, previousUser) => {
   <NuxtPage />
 
   <footer>
-    <a href="https://github.com/posva/nuxt--vuefire-example-spark-plan">
+    <a href="https://github.com/posva/nuxt--vuefire-example-blaze-plan">
       <img
         src="@/assets/github-mark.svg"
         alt="GitHub logo"

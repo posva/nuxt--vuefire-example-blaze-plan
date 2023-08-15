@@ -5,7 +5,7 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: 'Nuxt + VueFire Spark Plan Example',
+      title: 'Nuxt + VueFire Blaze Plan Example',
       link: [
         {
           href: 'https://cdn.jsdelivr.net/npm/water.css@2/out/water.css',
@@ -23,12 +23,12 @@ export default defineNuxtConfig({
   css: ['~/assets/style.css'],
 
   nitro: {
-    // NOTE: we don't want to use the firebase preset because this is a static website and the firebase preset is for SSR
-    preset: 'firebase', // the default
+    preset: 'firebase',
 
+    // for the upcoming preset
     firebase: {
-      // gen: 2,
-      // nodeVersion: '18',
+      gen: 2,
+      nodeVersion: '18',
     },
   },
 
@@ -69,7 +69,7 @@ export default defineNuxtConfig({
     payloadExtraction: false,
   },
 
-  // since we are only using SSR for generation, we can only use a few of these rules effectively
+  // Customize this to your needs and try to server side render only what is needed
   // https://nuxt.com/docs/guide/concepts/rendering#hybrid-rendering
   routeRules: {
     '/': { isr: true },
@@ -77,9 +77,9 @@ export default defineNuxtConfig({
     // useful for authenticated pages that require the user to be logged in to be
     // displayed
     '/admin': { ssr: false },
-    '/users': { ssr: false },
-    '/posts/new': { ssr: false },
-    '/emoji-panel': { ssr: false },
+    '/users': { ssr: true },
+    '/posts/new': { ssr: true },
+    '/emoji-panel': { swr: true },
     '/login': { ssr: false },
   },
 })
