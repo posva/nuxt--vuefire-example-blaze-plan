@@ -51,7 +51,9 @@ const filteredTodos = computed(() => {
   return todosRef
 })
 
-const { data: todos, pending } = useDatabaseList<Todo>(filteredTodos)
+const { data: todoList, pending } = useDatabaseList<Todo>(filteredTodos, {
+  // ssrKey: 'todos',
+})
 
 const newTodoText = ref('')
 
@@ -123,9 +125,10 @@ function removeTodo(id: string) {
       <input v-model.trim="newTodoText" placeholder="Add new todo" />
       <button>Add Todo</button>
     </form>
+
     <TransitionGroup tag="ul" name="list">
       <TodoItem
-        v-for="todo in todos"
+        v-for="todo in todoList"
         :key="todo.id"
         :todo="todo"
         @delete="removeTodo"

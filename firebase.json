@@ -13,6 +13,10 @@
     "rewrites": [
       {
         "source": "**",
+        "function": "server"
+      },
+      {
+        "source": "**",
         "destination": "/index.html"
       }
     ]
@@ -40,5 +44,12 @@
       "enabled": true
     },
     "singleProjectMode": true
-  }
+  },
+  "functions": [
+    {
+      "source": ".output/server",
+      "codebase": "default",
+      "ignore": [".git", "firebase-debug.log", "firebase-debug.*.log"]
+    }
+  ]
 }

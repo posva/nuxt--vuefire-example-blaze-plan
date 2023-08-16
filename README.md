@@ -65,6 +65,23 @@ mv .env.example .env
 
 You can now clean up any files you don't need, for example, if you are not using the Realtime Database, you can delete `database.rules.json`.
 
+You can also remove the `./functions` folder as the Nuxt project builds that for you.
+Replace the `"function"` config in `firebase.json` with:
+
+```json
+{
+  "functions": [
+    {
+      "source": ".output/server",
+      "codebase": "default",
+      "ignore": [".git", "firebase-debug.log", "firebase-debug.*.log"]
+    }
+  ]
+}
+```
+
+Nuxt will generate the `.output/server` folder when running `nuxt build`.
+
 ### Service Account
 
 > If you don't want to use a Service Account file, **you will have to turn off SSR in `nuxt.config.ts` with `ssr: false`** and delete the line `GOOGLE_APPLICATION_CREDENTIALS=./service-account.json` from `.env`.

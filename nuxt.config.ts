@@ -23,6 +23,11 @@ export default defineNuxtConfig({
   css: ['~/assets/style.css'],
 
   nitro: {
+    prerender: {
+      // these routes are not dependent on any data and can be prerendered
+      // it's a good idea to pre render all routes that you can
+      routes: ['/', '/analytics'],
+    },
     preset: 'firebase',
 
     // for the upcoming preset
@@ -49,19 +54,20 @@ export default defineNuxtConfig({
     appCheck: {
       provider: 'ReCaptchaV3',
       // site key, NOT secret key
-      key: '6Ldmc3EnAAAAABDuQi-PGLBObXMOsVlXOntAX6WQ',
+      key: '6LeS5q0nAAAAABH3u13ntLwuIOkiNjHlXJOXoN5T',
       isTokenAutoRefreshEnabled: true,
     },
 
     config: {
-      apiKey: 'AIzaSyBKBqCHUpxMNjRJ8uhgOTK0wMGr9LkkFOA',
-      authDomain: 'nuxt-vuefire-example-spark.firebaseapp.com',
+      apiKey: 'AIzaSyBsdR5gT1fFBF5c8YDUw_4Qcg2E_C9Pwn8',
+      authDomain: 'nuxt-vuefire-example-blaze.firebaseapp.com',
       databaseURL:
-        'https://nuxt-vuefire-example-spark-default-rtdb.europe-west1.firebasedatabase.app',
-      projectId: 'nuxt-vuefire-example-spark',
-      storageBucket: 'nuxt-vuefire-example-spark.appspot.com',
-      messagingSenderId: '639475067598',
-      appId: '1:639475067598:web:13fc8572370163aa913e9f',
+        'https://nuxt-vuefire-example-blaze-default-rtdb.firebaseio.com',
+      projectId: 'nuxt-vuefire-example-blaze',
+      storageBucket: 'nuxt-vuefire-example-blaze.appspot.com',
+      messagingSenderId: '254121855253',
+      appId: '1:254121855253:web:c1e3357402843d829e411c',
+      measurementId: 'G-LL0HQ2E3J2',
     },
   },
 
@@ -72,14 +78,14 @@ export default defineNuxtConfig({
   // Customize this to your needs and try to server side render only what is needed
   // https://nuxt.com/docs/guide/concepts/rendering#hybrid-rendering
   routeRules: {
-    '/': { isr: true },
     // Make some pages client only (since we have an SPA)
     // useful for authenticated pages that require the user to be logged in to be
     // displayed
     '/admin': { ssr: false },
-    '/users': { ssr: true },
-    '/posts/new': { ssr: true },
-    '/emoji-panel': { swr: true },
     '/login': { ssr: false },
+    // you don't need to add ssr: true to any route, it's the default
+    // '/users': { ssr: true },
+    // '/posts/new': { ssr: true },
+    // '/emoji-panel': { swr: true },
   },
 })
