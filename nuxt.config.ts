@@ -26,7 +26,7 @@ export default defineNuxtConfig({
     prerender: {
       // these routes are not dependent on any data and can be prerendered
       // it's a good idea to pre render all routes that you can
-      routes: ['/', '/analytics'],
+      routes: ['/'],
     },
     preset: 'firebase',
 
@@ -83,6 +83,7 @@ export default defineNuxtConfig({
     // displayed
     '/admin': { ssr: false },
     '/login': { ssr: false },
+    '/analytics': { ssr: false },
     // you don't need to add ssr: true to any route, it's the default
     // '/users': { ssr: true },
     // '/posts/new': { ssr: true },

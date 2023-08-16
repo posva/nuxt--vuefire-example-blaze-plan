@@ -49,6 +49,8 @@ Activate **now** any of the features you want to use (note the starter uses them
 
 Create an Application in the _Project Overview_. This will give you a `firebaseConfig` object, replace the content of `vuefire.config` in `nuxt.config.ts` with it.
 
+Before running `firebase init`, make sure to **delete the `.firebaserc` file** as it's what the Firebase CLI uses to know which project to use. **If you forgot, you will have to set the project with `firebase use <project-id>`**.
+
 Now you have to run `firebase init` at the root of your project. Some notes:
 
 - Select the features you want to use.
@@ -84,9 +86,13 @@ Nuxt will generate the `.output/server` folder when running `nuxt build`.
 
 ### Service Account
 
-> If you don't want to use a Service Account file, **you will have to turn off SSR in `nuxt.config.ts` with `ssr: false`** and delete the line `GOOGLE_APPLICATION_CREDENTIALS=./service-account.json` from `.env`.
+For server side rendering to work, you will need to create a service account. You can do this from the _Project Settings_, _Service Accounts_ tab. Then, download the JSON file and save it as `service-account.json` at the root of your project. The `.env` file should already have a variable pointing to it.
 
-For some Nuxt features to work like server side rendering, you will need to create a service account. You can do this from the _Project Settings_, _Service Accounts_ tab. Then, download the JSON file and save it as `service-account.json` at the root of your project.
+### Authentication
+
+To enable authentication during SSR, you will need to enable the IAM Service Account Credentials API on the [Google Cloud console](https://console.cloud.google.com/apis/api/iamcredentials.googleapis.com/overview).
+
+Once this API is activated, you will need to add a role to your service account. This is explained in [the Firebase documentation](https://firebase.google.com/docs/auth/admin/create-custom-tokens#iam_api_not_enabled).
 
 ### App Check
 
@@ -111,7 +117,7 @@ export default defineNuxtConfig({
 
 It's also recommended to generate a debug token now from the Firebase Console, on the Apps tab, and add it to your `.env` file:
 
-```text
+```txt
 GOOGLE_APPLICATION_CREDENTIALS=./service-account.json
 FIREBASE_APPCHECK_DEBUG_TOKEN=...
 ```
@@ -134,33 +140,43 @@ CONSOLA_LEVEL=5 npm run dev
 
 ## Building for Production
 
-Since this is an SPA, building for production is usually done with `pnpm run generate`.
+Since this is an SSR app, building for production is usually done with `pnpm run build`.
 
 ### Previewing Locally
 
 In order to preview a production build locally, you will need to enable debug in App Check:
 
 ```bash
-VUEFIRE_APPCHECK_DEBUGN=true pnpm run generate
+VUEFIRE_APPCHECK_DEBUG=true pnpm run build
 ```
 
 If you want to preview with emulators, you can force them in a production build with:
 
 ```bash
-VUEFIRE_EMULATORS=true pnpm run generate
+VUEFIRE_EMULATORS=true pnpm run build
 ```
 
 Note you can combine both by just passing the variables one after the other:
 
 ```bash
-VUEFIRE_APPCHECK_DEBUGN=true VUEFIRE_EMULATORS=true pnpm run generate
+VUEFIRE_APPCHECK_DEBUG=true VUEFIRE_EMULATORS=true pnpm run build
 ```
 
 ### Deploying to Firebase
 
 Always deploy once from the CLI as it might prompt you to create some roles. Once this is done, _link the hosting site_ with the app from the _Project Settings_, _Your apps_ section.
 
-You can deploy manually with `pnpm run generate && firebase deploy`.
+You can deploy manually with `pnpm run build && firebase deploy`.
+
+### Troubleshooting
+
+## Failed deployments
+
+In some rare occasions, an initial deployment might fail with different errors, given the complexity of some deployments, I recommend you to google the error message. Very often, [deleting the function and redeploying fixes the issue](https://github.com/firebase/firebase-tools/issues/5244).
+
+## Logs
+
+You will find more information in the logs of the functions, accessible from the Firebase Console.
 
 ### Automatic Deployments on GitHub
 
