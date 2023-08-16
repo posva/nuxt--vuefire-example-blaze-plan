@@ -144,23 +144,21 @@ Since this is an SSR app, building for production is usually done with `pnpm run
 
 ### Previewing Locally
 
-In order to preview a production build locally, you will need to enable debug in App Check:
-
-```bash
-VUEFIRE_APPCHECK_DEBUG=true pnpm run build
-```
-
-If you want to preview with emulators, you can force them in a production build with:
-
-```bash
-VUEFIRE_EMULATORS=true pnpm run build
-```
-
-Note you can combine both by just passing the variables one after the other:
+In order to preview a production build locally, you will need to enable debug mode for App Check and also emulators:
 
 ```bash
 VUEFIRE_APPCHECK_DEBUG=true VUEFIRE_EMULATORS=true pnpm run build
 ```
+
+Then you can run the emulators to preview your app:
+
+```bash
+pnpm run emulators
+```
+
+Your app will then be accessible on `http://localhost:5050`.
+
+You can also not use emulators but some features like auth might not work since we are on localhost.
 
 ### Deploying to Firebase
 
@@ -176,7 +174,7 @@ In some rare occasions, an initial deployment might fail with different errors, 
 
 ## Logs
 
-You will find more information in the logs of the functions, accessible from the Firebase Console.
+You will find more information in the logs of the functions, accessible from the Firebase Console. Note you might want to set the `CONSOLA_LEVEL` _environment variable_ to 5 in your deployment to enable debug logs.
 
 ### Automatic Deployments on GitHub
 
