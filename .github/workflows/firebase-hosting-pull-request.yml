@@ -1,0 +1,33 @@
+# From https://github.com/marketplace/actions/deploy-to-firebase-hosting
+
+name: Deploy to Firebase Hosting on PR
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  build_and_preview:
+    if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: corepack enable
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build site
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_NUXT_VUEFIRE_EXAMPLE_SPARK }}
+        run: pnpm run generate
+
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: '${{ secrets.GITHUB_TOKEN }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_NUXT_VUEFIRE_EXAMPLE_SPARK }}'
+          projectId: nuxt-vuefire-example-spark
