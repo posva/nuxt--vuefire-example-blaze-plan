@@ -26,7 +26,7 @@ export default defineNuxtConfig({
     prerender: {
       // these routes are not dependent on any data and can be prerendered
       // it's a good idea to pre render all routes that you can
-      routes: ['/'],
+      routes: ['/', '/analytics'],
     },
     preset: 'firebase',
 
