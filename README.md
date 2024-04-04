@@ -1,6 +1,6 @@
 # Nuxt + VueFire Template
 
-[Nuxt](https://nuxtjs.org/) template with [VueFire](https://vuefire.vuejs.org/) to get started with [Firebase](https://firebase.google.com/) using the Free **Blaze Plan**. If you are looking for the **Spark Plan** version instead, [check this template instead](https://github.com/posva/nuxt--vuefire-example-spark-plan).
+[Nuxt](https://nuxtjs.org/) template with [VueFire](https://vuefire.vuejs.org/) to get started with [Firebase](https://firebase.google.com/) using the [**Blaze Plan** (pay as you go)](https://firebase.google.com/pricing). If you are looking for the **Spark Plan** version instead, [check this template instead](https://github.com/posva/nuxt--vuefire-example-spark-plan).
 
 You can check a live demo at [nuxt-vuefire-example-blaze.web.app](https://nuxt-vuefire-example-blaze.web.app).
 
