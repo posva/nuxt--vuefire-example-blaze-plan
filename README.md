@@ -92,7 +92,7 @@ For server side rendering to work, you will need to create a service account. Yo
 
 To enable authentication during SSR, you will need to enable the IAM Service Account Credentials API on the [Google Cloud console](https://console.cloud.google.com/apis/api/iamcredentials.googleapis.com/overview).
 
-Once this API is activated, you will need to add a role to your service account. This is explained in [the Firebase documentation](https://firebase.google.com/docs/auth/admin/create-custom-tokens#iam_api_not_enabled).
+Once this API is activated, you will need to add a role to your service account. This is explained in [the Firebase documentation](https://firebase.google.com/docs/auth/admin/create-custom-tokens#iam_api_not_enabled). This project, because it is running in a 2nd generation cloud function, needs to have the `Service Account Token Creator` role added to the `{RANDOM_NUMBER}-compute@developer.gserviceaccount.com` service account.
 
 ### App Check
 
