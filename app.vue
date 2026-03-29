@@ -44,7 +44,7 @@ watch(user, async (currentUser, previousUser) => {
     }
 
     // fallback photo for dev with emulators or anonymous users
-    if (currentUser.isAnonymous || process.dev) {
+    if (currentUser.isAnonymous || import.meta.dev) {
       userData.displayName ??= 'Anonymous'
       userData.photoURL ??= `https://i.pravatar.cc/150?u=${currentUser.uid}`
 
